@@ -1,13 +1,13 @@
 # Toy Classification using Machine Learning — MITx 6.86x Coursework
 
-This repository demonstrates implementations of the **Perceptron**, **Average Perceptron**, and **Pegasos** algorithms for binary classification. Each algorithm is coded from scratch, including parameter updates and the search for optimal \(\theta\) and \(\theta_0\).
+This repository demonstrates implementations of the **Perceptron**, **Average Perceptron**, and **Pegasos** algorithms for binary classification. Each algorithm is coded from scratch, including parameter updates and the search for optimal theta and theta_0.
 
 ---
 
 ## 1. Algorithms
 
 ### 1.1 Perceptron
-- Standard binary classifier.
+- Standard linear binary classifier.
 - Updates only on misclassified points:
 - Algorithm:  
   ![Perceptron Decision Boundary](https://github.com/user-attachments/assets/57257123-a73c-491d-a422-5555aafafded)
@@ -30,7 +30,7 @@ This repository demonstrates implementations of the **Perceptron**, **Average Pe
 ---
 
 ### 1.3 Pegasos (SGD for SVM)
-- Uses hinge loss and regularization term for binary classification.
+- Uses hinge loss and regularization term for linear binary classification.
 - Algorithm:
 	<img width="975" height="354" alt="image" src="https://github.com/user-attachments/assets/ef773239-0263-4089-9a33-f6485535c109" />
 - Updates based on randomly selected n individual samples:
@@ -49,6 +49,7 @@ This repository demonstrates implementations of the **Perceptron**, **Average Pe
 2. **Parameter Optimization** – Find best \(\theta\) and \(\theta_0\) for each algorithm.
 3. **Visualization** – Plot decision boundaries and updates; clearly distinguish lines for Perceptron, Average Perceptron, and Pegasos.
 4. **Test** – Run test to see if algorithm haven applied correctly.
+
 
 
 
