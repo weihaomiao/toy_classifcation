@@ -1,351 +1,54 @@
-Toy Classification using Machine Learning — MITx 6.86x Coursework
+# Toy Classification using Machine Learning — MITx 6.86x Coursework
 
-This repository demonstrates implementations of the Perceptron, Average Perceptron, and Pegasos algorithms for binary classification. Each algorithm is coded from scratch, including parameter updates and the search for optimal 
-𝜃
-θ and 
-𝜃
-0
-θ
-0
-	​
+This repository demonstrates implementations of the **Perceptron**, **Average Perceptron**, and **Pegasos** algorithms for binary classification. Each algorithm is coded from scratch, including parameter updates and the search for optimal \(\theta\) and \(\theta_0\).
 
-.
+---
 
-1. Algorithms
-1.1 Perceptron
+## 1. Algorithms
 
-Standard binary classifier.
+### 1.1 Perceptron
+- Standard binary classifier.
+- Updates only on misclassified points:
+- Algorithm:  
+  ![Perceptron Decision Boundary](https://github.com/user-attachments/assets/57257123-a73c-491d-a422-5555aafafded)
+- Updates occur only on mistakes:  
+  ![Perceptron Updates](https://github.com/user-attachments/assets/7965452d-a242-4abb-bd49-b7560ce46eea)
+- Decision boundary with toy data:
+  
+  ![Decision Boundary — Perceptron](https://github.com/user-attachments/assets/d2b3fdb5-6ae9-454d-bb74-3a40f473c0d5)
+---
 
-Updates only on misclassified points:
+### 1.2 Average Perceptron
+- Algorithm same as perceptron
+- Key difference: **averages all theta and theta_0 values across training steps**, including unchanged ones.
+- Updates recorded for every training sample:  
+  ![Average Perceptron](https://github.com/user-attachments/assets/d8e77745-98b2-44a0-a944-11057f0f8eb8)
+- Decision boundary with toy data:
 
-If 
-𝑦
-𝑖
-(
-𝜃
-⋅
-𝑥
-𝑖
-+
-𝜃
-0
-)
-≤
-0
-:
-𝜃
-←
-𝜃
-+
-𝑦
-𝑖
-𝑥
-𝑖
-,
-𝜃
-0
-←
-𝜃
-0
-+
-𝑦
-𝑖
-If y
-i
-	​
+  <img width="640" height="480" alt="Figure_2" src="https://github.com/user-attachments/assets/937e9162-dd6d-4796-b385-e43818024c2e" />
 
-(θ⋅x
-i
-	​
+---
 
-+θ
-0
-	​
+### 1.3 Pegasos (SGD for SVM)
+- Uses hinge loss and regularization term for binary classification.
+- Algorithm:
+	<img width="975" height="354" alt="image" src="https://github.com/user-attachments/assets/ef773239-0263-4089-9a33-f6485535c109" />
+- Updates based on randomly selected n individual samples:
 
-)≤0:θ←θ+y
-i
-	​
+  ![Sample Updates](https://github.com/user-attachments/assets/dd2c8d9d-cccc-4b0e-aa1c-fcf18e83e806)
 
-x
-i
-	​
+- Decision boundary with toy data:
 
-,θ
-0
-	​
+  ![Decision Boundary — Perceptron](https://github.com/user-attachments/assets/0370f16e-16a0-421c-8800-8f6a152a1893)
 
-←θ
-0
-	​
+---
 
-+y
-i
-	​
+## 2. Workflow
 
+1. **Data Exploration** – Data are given
+2. **Parameter Optimization** – Find best \(\theta\) and \(\theta_0\) for each algorithm.
+3. **Visualization** – Plot decision boundaries and updates; clearly distinguish lines for Perceptron, Average Perceptron, and Pegasos.
+4. **Test** – Run test to see if algorithm haven applied correctly.
 
-Visuals:
-
-Decision boundary with toy data:
-
-
-Updates occur only on mistakes:
-
-
-1.2 Average Perceptron
-
-Identical update rule as Perceptron.
-
-Key difference: averages all 
-𝜃
-θ and 
-𝜃
-0
-θ
-0
-	​
-
- values across training steps, including unchanged ones.
-
-𝜃
-ˉ
-=
-1
-𝑁
-∑
-𝑡
-=
-1
-𝑁
-𝜃
-(
-𝑡
-)
-,
-𝜃
-ˉ
-0
-=
-1
-𝑁
-∑
-𝑡
-=
-1
-𝑁
-𝜃
-0
-(
-𝑡
-)
-θ
-ˉ
-=
-N
-1
-	​
-
-t=1
-∑
-N
-	​
-
-θ
-(t)
-,
-θ
-ˉ
-0
-	​
-
-=
-N
-1
-	​
-
-t=1
-∑
-N
-	​
-
-θ
-0
-(t)
-	​
-
-
-Visuals:
-
-Updates recorded for every training sample:
-
-
-1.3 Pegasos (Stochastic Gradient Descent for SVM)
-
-Uses hinge loss and regularization for binary classification.
-
-Update rule:
-
-𝜃
-←
-(
-1
-−
-𝜂
-𝜆
-)
-𝜃
-+
-𝜂
-𝑦
-𝑖
-𝑥
-𝑖
-if margin violated
-,
-𝜃
-0
-←
-𝜃
-0
-+
-𝜂
-𝑦
-𝑖
-θ←(1−ηλ)θ+ηy
-i
-	​
-
-x
-i
-	​
-
-if margin violated,θ
-0
-	​
-
-←θ
-0
-	​
-
-+ηy
-i
-	​
-
-
-Objective function:
-
-min
-⁡
-𝜃
-,
-𝜃
-0
-𝜆
-2
-∥
-𝜃
-∥
-2
-+
-1
-𝑛
-∑
-𝑖
-=
-1
-𝑛
-max
-⁡
-(
-0
-,
-1
-−
-𝑦
-𝑖
-(
-𝜃
-⋅
-𝑥
-𝑖
-+
-𝜃
-0
-)
-)
-θ,θ
-0
-	​
-
-min
-	​
-
-2
-λ
-	​
-
-∥θ∥
-2
-+
-n
-1
-	​
-
-i=1
-∑
-n
-	​
-
-max(0,1−y
-i
-	​
-
-(θ⋅x
-i
-	​
-
-+θ
-0
-	​
-
-))
-
-Regularization term (
-𝜆
-λ) controls the margin and generalization.
-
-Visuals:
-
-Decision boundary with Pegasos:
-
-
-Hinge loss illustration:
-
-
-Effect of regularization:
-
-
-Update rule visualization:
-
-
-Tip: Use distinct line styles, colors, or markers for each algorithm in plots to make comparisons clear.
-
-2. Workflow
-
-Data Exploration – Visualize toy datasets and understand feature distribution.
-
-Parameter Optimization – Find best 
-𝜃
-θ and 
-𝜃
-0
-θ
-0
-	​
-
- for each algorithm.
-
-Visualization – Plot decision boundaries and updates; clearly distinguish lines for Perceptron, Average Perceptron, and Pegasos.
-
-Evaluation – Compare classification accuracy and behavior across algorithms.
 
 
